@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潮汕问礼 · 彩礼行情与追求攻略</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        paper:  '#FBF6EE',
+        paper2:'#F4EADA',
+        zhu:    '#A62B2B',
+        zhudk:  '#7A1C1C',
+        gold:   '#C9A227',
+        goldlt: '#E6CB84',
+        ink:    '#2B2420',
+        ink2:   '#6B5D51'
+      },
+      fontFamily: {
+        serif: ['"Noto Serif SC"','"Songti SC"','SimSun','serif'],
+        sans:  ['"Noto Sans SC"','"PingFang SC"','"Microsoft YaHei"','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{
+    background-color:#FBF6EE;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(198,160,74,.07) 0, transparent 42%),
+      radial-gradient(circle at 88% 72%, rgba(166,43,43,.06) 0, transparent 46%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    color:#2B2420;
+  }
+  .font-serif{font-family:'Noto Serif SC',serif}
+  .seal{
+    box-shadow:0 0 0 3px #A62B2B, 0 0 0 6px rgba(166,43,43,.18);
+  }
+  .card{
+    background:linear-gradient(180deg,#FFFDF9 0%,#FBF4E9 100%);
+    border:1px solid rgba(166,43,43,.16);
+    box-shadow:0 1px 2px rgba(43,36,32,.04), 0 12px 28px -18px rgba(122,28,28,.35);
+  }
+  .rule-gold{background:linear-gradient(90deg,transparent,#C9A227,transparent)}
+  .pattern-top{
+    background-image:repeating-linear-gradient(90deg, rgba(201,162,39,.55) 0 2px, transparent 2px 12px);
+    height:3px;
+  }
+  .hero-bg{
+    background:
+      radial-gradient(1200px 460px at 50% -10%, rgba(230,203,132,.30), transparent 60%),
+      linear-gradient(160deg,#8E2121 0%,#A62B2B 45%,#7A1C1C 100%);
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23E6CB84' stroke-opacity='.28' stroke-width='1.4'%3E%3Cpath d='M20 20h26v26H20zM34 34h12v12H34z'/%3E%3Cpath d='M74 74h26v26H74zM88 88h12v12H88z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .tab-active{background:#A62B2B;color:#FFF8E8;border-color:#A62B2B}
+  .bar-fill{transition:width .8s cubic-bezier(.2,.8,.2,1)}
+  .flip{perspective:1000px}
+  .flip-in{position:relative;transition:transform .55s cubic-bezier(.3,.8,.3,1);transform-style:preserve-3d}
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .flip-f,.flip-b{backface-visibility:hidden;-webkit-backface-visibility:hidden;position:absolute;inset:0}
+  .flip-b{transform:rotateY(180deg)}
+  .nav-link{position:relative;padding-bottom:4px}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:#C9A227;transition:width .3s}
+  .nav-link:hover::after,.nav-link.act::after{width:100%}
+  details>summary{list-style:none;cursor:pointer}
+  details>summary::-webkit-details-marker{display:none}
+  details .chev{transition:transform .3s}
+  details[open] .chev{transform:rotate(90deg)}
+  input[type=range]{accent-color:#A62B2B}
+  .num{font-variant-numeric:tabular-nums}
+  ::selection{background:#E6CB84;color:#7A1C1C}
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-[#FBF6EE]/88 border-b border-zhu/15">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-2 shrink-0">
+      <span class="w-7 h-7 rounded-[3px] bg-zhu text-[#FFF3D6] font-serif font-black grid place-items-center text-[13px] seal">礼</span>
+      <span class="font-serif font-bold tracking-wider text-zhudk">潮汕问礼</span>
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-[13px] text-ink2">
+      <a class="nav-link" href="#price">彩礼行情</a>
+      <a class="nav-link" href="#calc">预算测算</a>
+      <a class="nav-link" href="#rites">婚俗流程</a>
+      <a class="nav-link" href="#strategy">追求攻略</a>
+      <a class="nav-link" href="#lang">潮语速成</a>
+      <a class="nav-link" href="#food">约会地图</a>
+      <a class="nav-link" href="#pitfall">避坑清单</a>
+    </div>
+    <a href="#calc" class="text-[12px] px-3 py-1.5 rounded-full bg-zhu text-[#FFF3D6] hover:bg-zhudk transition shrink-0">测一测</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<header id="top" class="relative hero-bg overflow-hidden text-[#FFF6E4]">
+  <div class="relative z-10 max-w-4xl mx-auto px-5 pt-20 pb-20 md:pt-28 md:pb-28 text-center">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[.32em] text-goldlt/90 border border-goldlt/40 rounded-full px-4 py-1.5">
+      潮 · 汕 · 婚 · 俗 · 实 · 录
+    </div>
+    <h1 class="mt-7 font-serif font-black leading-[1.12] text-[42px] sm:text-[58px] md:text-[70px] tracking-tight">
+      潮汕彩礼要多少<br class="sm:hidden">，<span class="text-goldlt">怎么追</span>？
+    </h1>
+    <p class="mt-6 text-[15px] md:text-[17px] leading-8 text-[#FFF6E4]/82 max-w-2xl mx-auto">
+      一份写给外省与外市青年的实战手册。先把<span class="text-goldlt font-medium">钱的事</span>算明白，
+      再把<span class="text-goldlt font-medium">人的事</span>做扎实——潮汕婚恋的两道门，顺序不能反。
+    </p>
+    <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <a href="#price" class="px-6 py-3 rounded-full bg-[#FFF6E4] text-zhudk font-semibold text-sm hover:bg-white transition shadow-lg shadow-black/20">查看彩礼行情 →</a>
+      <a href="#strategy" class="px-6 py-3 rounded-full border border-goldlt/50 text-goldlt text-sm hover:bg-white/10 transition">直接看追求攻略</a>
+    </div>
+    <div class="mt-12 grid grid-cols-3 gap-3 max-w-lg mx-auto text-center">
+      <div class="border border-goldlt/25 rounded-lg py-3 bg-white/5">
+        <div class="font-serif text-2xl font-bold text-goldlt">8–22<span class="text-sm">万</span></div>
+        <div class="text-[11px] mt-1 text-[#FFF6E4]/65">常见彩礼区间</div>
+      </div>
+      <div class="border border-goldlt/25 rounded-lg py-3 bg-white/5">
+        <div class="font-serif text-2xl font-bold text-goldlt">六<span class="text-sm">礼</span></div>
+        <div class="text-[11px] mt-1 text-[#FFF6E4]/65">完整婚俗环节</div>
+      </div>
+      <div class="border border-goldlt/25 rounded-lg py-3 bg-white/5">
+        <div class="font-serif text-2xl font-bold text-goldlt">回<span class="text-sm">盘</span></div>
+        <div class="text-[11px] mt-1 text-[#FFF6E4]/65">最容易被误读的一步</div>
+      </div>
+    </div>
+  </div>
+  <svg class="absolute bottom-0 left-0 w-full text-paper" viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="currentColor" d="M0 70V32c180 26 340 30 520 12S1120 4 1440 30v40z"/></svg>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 md:px-6">
+
+<!-- ══════════ 认知前置 ══════════ -->
+<section class="-mt-2 pt-14 pb-4">
+  <div class="card rounded-xl p-6 md:p-8">
+    <div class="flex gap-4">
+      <div class="shrink-0 w-10 h-10 rounded-full bg-zhu/10 grid place-items-center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A62B2B" stroke-width="2" stroke-linecap="round"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <div>
+        <h2 class="font-serif text-xl font-bold text-zhudk">先纠正三个认知偏差</h2>
+        <div class="mt-4 grid md:grid-cols-3 gap-4 text-[13.5px] leading-7 text-ink2">
+          <div class="border-l-2 border-gold pl-4">
+            <div class="font-serif font-bold text-ink mb-1">① 彩礼 ≠ 净支出</div>
+            潮汕极重「<b class="text-zhu">回盘</b>」与嫁妆。女方家庭普遍会把聘金的一部分乃至全额退回，另加家电、车、金饰、现金陪嫁。只看聘金数字会严重高估真实成本。
+          </div>
+          <div class="border-l-2 border-gold pl-4">
+            <div class="font-serif font-bold text-ink mb-1">② 地区差异 &gt; 城市差异</div>
+            同一个汕头，市区与潮阳、潮南的礼数厚度完全不同；普宁、惠来的行情也和揭阳市区两回事。<b class="text-zhu">先问清哪个镇</b>，再谈行情。
+          </div>
+          <div class="border-l-2 border-gold pl-4">
+            <div class="font-serif font-bold text-ink mb-1">③ 房子常比彩礼更难</div>
+            潮汕城区房价虽低于广深，但「<b class="text-zhu">成家要有厝</b>」是硬观念。真正卡住婚事的往往是房与家庭认可，而不是聘金本身。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 彩礼行情 ══════════ -->
+<section id="price" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 01</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">三市彩礼行情图</h2>
+    <p class="mt-3 text-sm text-ink2">民间常见聘金区间（单位：万元人民币），点击切换地区</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+
+  <div class="mt-8 flex justify-center gap-2.5" id="regionTabs">
+    <button data-r="shantou"  class="tab px-6 py-2.5 rounded-full border border-zhu/30 text-sm font-semibold text-zhudk bg-white/70 hover:bg-white transition">汕头</button>
+    <button data-r="chaozhou" class="tab px-6 py-2.5 rounded-full border border-zhu/30 text-sm font-semibold text-zhudk bg-white/70 hover:bg-white transition">潮州</button>
+    <button data-r="jieyang"  class="tab px-6 py-2.5 rounded-full border border-zhu/30 text-sm font-semibold text-zhudk bg-white/70 hover:bg-white transition">揭阳</button>
+  </div>
+
+  <div class="mt-7 card rounded-xl p-6 md:p-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-dashed border-zhu/20 pb-4">
+      <h3 id="regionName" class="font-serif text-2xl font-bold text-zhudk">汕头市</h3>
+      <p id="regionDesc" class="text-[13px] text-ink2"></p>
+    </div>
+    <div id="regionBars" class="mt-6 space-y-5"></div>
+    <div class="mt-7 flex items-center gap-4 text-[11px] text-ink2 border-t border-dashed border-zhu/20 pt-4">
+      <span class="flex items-center gap-1.5"><i class="w-8 h-2 rounded-full bg-zhu/25 inline-block"></i>低位</span>
+      <span class="flex items-center gap-1.5"><i class="w-8 h-2 rounded-full bg-zhu inline-block"></i>常见区间</span>
+      <span class="flex items-center gap-1.5"><i class="w-8 h-2 rounded-full bg-gold inline-block"></i>高位（礼数重/宗族观念强的乡镇）</span>
+      <span class="ml-auto">标尺：0 — 25 万</span>
+    </div>
+  </div>
+
+  <div class="mt-6 grid md:grid-cols-3 gap-4">
+    <div class="card rounded-xl p-5">
+      <div class="font-serif font-bold text-zhudk">🔢 数字要「好意头」</div>
+      <p class="mt-2 text-[13px] leading-7 text-ink2">聘金极少出现整数或 4 结尾。常见 <b>8.8 / 10.8 / 12.8 / 16.8 / 18.8 万</b>，取「发」「顺」谐音。谈拢后直接按吉利数字包，比砍价到 9.3 万更得体。</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="font-serif font-bold text-zhudk">🥮 聘礼不止现金</div>
+      <p class="mt-2 text-[13px] leading-7 text-ink2">除聘金外还有<b>三金/五金</b>、饼食糖方、大桔、五牲、烟酒、"洗屎尿钱"（谢养育）等。这些名目由媒人或长辈列出，属礼数而非讨价。</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="font-serif font-bold text-zhudk">⚖️ 婚俗改革在推进</div>
+      <p class="mt-2 text-[13px] leading-7 text-ink2">近年广东多地推行婚俗改革，不少村镇红白理事会公开<b>倡议限额彩礼、抵制攀比</b>。若对方家庭来自这类村镇，主动打听村规，能省下大笔预算。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 预算测算 ══════════ -->
+<section id="calc" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 02</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">办一场潮汕婚礼，到底要花多少</h2>
+    <p class="mt-3 text-sm text-ink2">拖动参数，实时估算总支出与「扣掉回盘后」的实际净支出</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+
+  <div class="mt-9 grid lg:grid-cols-[1fr_1.05fr] gap-5 items-start">
+    <!-- 输入 -->
+    <div class="card rounded-xl p-6 md:p-7 space-y-6">
+      <div>
+        <label class="text-[13px] font-semibold text-ink flex justify-between"><span>聘金（彩礼现金）</span><span class="text-zhu font-bold num"><span id="vPin">12.8</span> 万</span></label>
+        <input id="pin" type="range" min="2" max="30" step="0.8" value="12.8" class="w-full mt-3">
+        <div class="flex justify-between text-[11px] text-ink2 mt-1"><span>2万</span><span>30万</span></div>
+      </div>
+
+      <div>
+        <label class="text-[13px] font-semibold text-ink flex justify-between"><span>三金 / 五金重量</span><span class="text-zhu font-bold num"><span id="vGram">50</span> 克</span></label>
+        <input id="gram" type="range" min="0" max="120" step="5" value="50" class="w-full mt-3">
+        <div class="flex items-center gap-3 mt-2">
+          <span class="text-[12px] text-ink2 shrink-0">金价</span>
+          <input id="goldPrice" type="number" value="950" min="300" max="2000" class="w-24 text-[13px] border border-zhu/25 rounded-md px-2 py-1 bg-white num">
+          <span class="text-[12px] text-ink2">元/克（含品牌工费，随行就市）</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-[12px] font-semibold text-ink">酒席桌数</label>
+          <input id="tables" type="number" value="30" min="0" max="120" class="mt-1.5 w-full text-[13px] border border-zhu/25 rounded-md px-2.5 py-2 bg-white num">
+        </div>
+        <div>
+          <label class="text-[12px] font-semibold text-ink">每桌预算（元）</label>
+          <input id="tablePrice" type="number" value="4200" min="1000" max="12000" step="100" class="mt-1.5 w-full text-[13px] border border-zhu/25 rounded-md px-2.5 py-2 bg-white num">
+        </div>
+      </div>
+      <p class="-mt-3 text-[11px] text-ink2">潮汕宴席以海鲜、卤水见长，桌价明显高于全国均值；但<b>人情红包可回收约 50%–80%</b>。</p>
+
+      <div>
+        <label class="text-[13px] font-semibold text-ink flex justify-between"><span>其他杂项</span><span class="text-zhu font-bold num"><span id="vMisc">3.0</span> 万</span></label>
+        <input id="misc" type="range" min="0" max="12" step="0.5" value="3" class="w-full mt-3">
+        <p class="text-[11px] text-ink2 mt-1">含饼食糖方、烟酒、婚纱摄影、婚车、各类小红包（开门利是、安床、上头、舅仔钱等）。</p>
+      </div>
+
+      <div class="border-t border-dashed border-zhu/20 pt-5 space-y-3">
+        <label class="flex items-center gap-2.5 cursor-pointer">
+          <input id="needHouse" type="checkbox" class="w-4 h-4 accent-[#A62B2B]">
+          <span class="text-[13px] font-semibold text-ink">计入婚房首付</span>
+        </label>
+        <div id="houseBox" class="grid grid-cols-3 gap-3 opacity-40 pointer-events-none transition">
+          <div><label class="text-[11px] text-ink2">面积㎡</label><input id="area" type="number" value="100" class="mt-1 w-full text-[13px] border border-zhu/25 rounded-md px-2 py-1.5 bg-white num"></div>
+          <div><label class="text-[11px] text-ink2">单价元/㎡</label><input id="housePrice" type="number" value="11000" step="500" class="mt-1 w-full text-[13px] border border-zhu/25 rounded-md px-2 py-1.5 bg-white num"></div>
+          <div><label class="text-[11px] text-ink2">首付比例</label>
+            <select id="down" class="mt-1 w-full text-[13px] border border-zhu/25 rounded-md px-2 py-1.5 bg-white">
+              <option value="0.3">30%</option><option value="0.4">40%</option><option value="0.5">50%</option><option value="1">全款</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-dashed border-zhu/20 pt-5">
+        <label class="text-[13px] font-semibold text-ink">女方回盘 / 嫁妆假设</label>
+        <div class="mt-2.5 grid grid-cols-3 gap-2" id="huipan">
+          <button data-v="0.2" class="hp px-2 py-2 rounded-lg border border-zhu/25 text-[12px] bg-white/70 hover:bg-white transition">保守<small class="block text-[10px] text-ink2">回 20%</small></button>
+          <button data-v="0.6" class="hp px-2 py-2 rounded-lg border border-zhu/25 text-[12px] bg-white/70 hover:bg-white transition">常见<small class="block text-[10px] text-ink2">回 60%</small></button>
+          <button data-v="1.0" class="hp px-2 py-2 rounded-lg border border-zhu/25 text-[12px] bg-white/70 hover:bg-white transition">丰厚<small class="block text-[10px] text-ink2">回 100%+</small></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 输出 -->
+    <div class="card rounded-xl overflow-hidden">
+      <div class="hero-bg relative px-6 py-7 text-[#FFF6E4]">
+        <div class="relative z-10">
+          <div class="text-[11px] tracking-[.28em] text-goldlt/85">预估实际净支出</div>
+          <div class="mt-1.5 font-serif font-black text-[46px] leading-none num">¥ <span id="outNet">—</span><span class="text-xl ml-1">万</span></div>
+          <p class="mt-2 text-[12px] text-[#FFF6E4]/70">总投入 <span id="outGross" class="num font-semibold text-goldlt">—</span> 万 · 预计回盘 <span id="outBack" class="num font-semibold text-goldlt">—</span> 万</p>
+        </div>
+      </div>
+      <div class="p-6">
+        <div id="breakdown" class="space-y-3.5"></div>
+        <div class="mt-6 p-4 rounded-lg bg-zhu/6 border border-zhu/15">
+          <div class="font-serif font-bold text-zhudk text-[14px]">💡 读这个数字的正确姿势</div>
+          <p class="mt-1.5 text-[12.5px] leading-6 text-ink2">
+            「回盘」不是交易，而是女方家庭向亲戚宣告女儿有底气的面子工程。它高度取决于家庭观念、经济条件与<b>谈判时的态度是否体面</b>——把彩礼当"买卖"去砍价，往往反而拿到最差的那档。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 婚俗流程 ══════════ -->
+<section id="rites" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 03</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">从提亲到回门：完整流程</h2>
+    <p class="mt-3 text-sm text-ink2">懂流程 = 知道每一步该出现在哪、该带什么、该说什么</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+
+  <div class="mt-10 relative pl-6 md:pl-0">
+    <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zhu/30 to-transparent -translate-x-1/2"></div>
+    <div class="md:hidden absolute left-[7px] top-2 bottom-2 w-px bg-zhu/25"></div>
+    <div id="timeline" class="space-y-5"></div>
+  </div>
+
+  <div class="mt-9 card rounded-xl p-6 md:p-8">
+    <h3 class="font-serif text-xl font-bold text-zhudk">📜 那些你听不懂的红包名目</h3>
+    <div id="hongbao" class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-4"></div>
+  </div>
+</section>
+
+<!-- ══════════ 追求攻略 ══════════ -->
+<section id="strategy" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 04</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">追潮汕女生：四阶段攻略</h2>
+    <p class="mt-3 text-sm text-ink2 max-w-2xl mx-auto">核心逻辑只有一句：<b class="text-zhu">在潮汕，追的从来不是一个人，而是一个家庭的信任。</b>所有动作围绕这句话展开。</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+
+  <div class="mt-9 space-y-4" id="stages"></div>
+
+  <div class="mt-8 grid md:grid-cols-2 gap-5">
+    <div class="card rounded-xl p-6 border-emerald-700/25" style="border-color:rgba(6,95,70,.3)">
+      <div class="font-serif font-bold text-lg text-emerald-800">✅ 见家长 · 加分清单</div>
+      <ul id="doList" class="mt-4 space-y-2.5 text-[13px] leading-6 text-ink2"></ul>
+    </div>
+    <div class="card rounded-xl p-6" style="border-color:rgba(166,43,43,.35)">
+      <div class="font-serif font-bold text-lg text-zhudk">⛔ 见家长 · 送命题清单</div>
+      <ul id="dontList" class="mt-4 space-y-2.5 text-[13px] leading-6 text-ink2"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 潮语速成 ══════════ -->
+<section id="lang" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 05</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">潮汕话速成 · 卡片翻转</h2>
+    <p class="mt-3 text-sm text-ink2">会十句潮汕话，胜过送十次礼。点击卡片看释义与用法</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+  <div id="phrases" class="mt-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+  <p class="mt-5 text-center text-[11px] text-ink2">* 潮汕话拼音采用民间通用白话字近似拼写，各地口音（潮州腔 / 汕头腔 / 揭阳腔）略有差异，以对方家里说法为准。</p>
+</section>
+
+<!-- ══════════ 约会地图 ══════════ -->
+<section id="food" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 06</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">约会地图：吃什么，就是什么段位</h2>
+    <p class="mt-3 text-sm text-ink2">潮汕人的社交货币是「食」。会点单，比会说话更早拿到好感</p>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+  <div id="foods" class="mt-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+  <div class="mt-7 card rounded-xl p-6 md:p-8">
+    <div class="font-serif text-xl font-bold text-zhudk">🍵 工夫茶：潮汕人的社交操作系统</div>
+    <p class="mt-3 text-[14px] leading-8 text-ink2">
+      在潮汕，被邀请「<b class="text-zhu">食茶</b>」才是关系真正的开始——街头档口、店铺、家里，三杯小盏一轮轮冲。你不必懂茶，但必须懂规矩：
+    </p>
+    <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" id="teaRules"></div>
+  </div>
+</section>
+
+<!-- ══════════ 避坑 ══════════ -->
+<section id="pitfall" class="pt-16 pb-6 scroll-mt-20">
+  <div class="text-center">
+    <div class="text-[11px] tracking-[.3em] text-gold font-semibold">CHAPTER 07</div>
+    <h2 class="mt-2 font-serif text-3xl md:text-4xl font-black text-zhudk">高频踩坑与化解</h2>
+    <div class="mt-4 w-24 h-px rule-gold mx-auto"></div>
+  </div>
+  <div id="traps" class="mt-9 grid md:grid-cols-2 gap-4"></div>
+</section>
+
+<!-- ══════════ 时间轴总结 ══════════ -->
+<section class="pt-16 pb-6">
+  <div class="card rounded-xl p-7 md:p-10 relative overflow-hidden">
+    <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full border-[14px] border-zhu/5"></div>
+    <div class="relative">
+      <h2 class="font-serif text-2xl md:text-3xl font-black text-zhudk">一句话总结</h2>
+      <p class="mt-5 text-[15px] md:text-[17px] leading-9 text-ink">
+        彩礼是可以谈的<b class="text-zhu">数字</b>，家庭认可是不能谈的<b class="text-zhu">前提</b>。<br>
+        把「她家里人怎么看我」当成长期项目来做——准时、务实、懂礼数、不吹牛、肯落地生根，
+        你会发现聘金的数字往往自己就松了。<br>
+        <span class="text-ink2 text-[14px]">反过来，只想用钱砸开这扇门的，通常在第一关就被筛掉了。</span>
+      </p>
+      <div class="mt-7 flex flex-wrap gap-2">
+        <span class="text-[12px] px-3 py-1.5 rounded-full bg-zhu/8 text-zhudk border border-zhu/20">务实 &gt; 浪漫</span>
+        <span class="text-[12px] px-3 py-1.5 rounded-full bg-zhu/8 text-zhudk border border-zhu/20">家庭 &gt; 个人</span>
+        <span class="text-[12px] px-3 py-1.5 rounded-full bg-zhu/8 text-zhudk border border-zhu/20">长期 &gt; 速成</span>
+        <span class="text-[12px] px-3 py-1.5 rounded-full bg-zhu/8 text-zhudk border border-zhu/20">礼数 &gt; 金额</span>
+        <span class="text-[12px] px-3 py-1.5 rounded-full bg-zhu/8 text-zhudk border border-zhu/20">真诚 &gt; 技巧</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="mt-16 hero-bg relative text-[#FFF6E4]">
+  <div class="relative z-10 max-w-4xl mx-auto px-5 py-12 text-center">
+    <div class="w-12 h-12 mx-auto rounded-[4px] bg-[#FFF6E4] text-zhu font-serif font-black grid place-items-center text-xl seal">礼</div>
+    <p class="mt-6 text-[12px] leading-6 text-[#FFF6E4]/65 max-w-2xl mx-auto">
+      <b class="text-goldlt">重要说明：</b>本文彩礼区间、金价、房价、桌价等均为民间经验性参考值，随年份、乡镇、家庭差异极大，<b class="text-goldlt">不构成任何报价或决策依据</b>。潮汕地区内部差异远大于外界想象，任何数字都请以对方家庭实际沟通为准。
+    </p>
+    <p class="mt-4 text-[12px] leading-6 text-[#FFF6E4]/65 max-w-2xl mx-auto">
+      同时请记住：所有「攻略」都只是理解一种文化的入口。潮汕女生首先是独立的个体，其次才是某个地方的人。尊重她的想法，比记住任何一条习俗都重要。
+    </p>
+    <div class="mt-8 text-[11px] tracking-[.28em] text-goldlt/60">潮 · 汕 · 问 · 礼　|　参 考 手 册</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════ DATA ═══════════════ */
+const REGIONS = {
+  shantou: {
+    name:'汕头市',
+    desc:'经济特区，市区与东西两翼差异极大；潮阳潮南宗族观念最重、礼数最全。',
+    items:[
+      {p:'金平区 / 龙湖区', lo:8.8, hi:18.8, t:'市区主流，双方多为双职工家庭，回盘比例高'},
+      {p:'澄海区', lo:9.8, hi:19.8, t:'玩具产业发达，民间富裕度较高，聘金中位数偏上'},
+      {p:'潮阳区', lo:10.8, hi:21.8, t:'祠堂文化浓、族亲网络密，婚宴规模通常很大'},
+      {p:'潮南区', lo:10.8, hi:22.8, t:'礼数最讲究，三金多为五金，饼食糖方分量讲究'},
+      {p:'濠江区', lo:8.8, hi:16.8, t:'相对务实，市区化明显，议价空间较大'},
+      {p:'南澳县', lo:6.8, hi:13.8, t:'海岛地区，行情温和，重亲属往来轻排场'}
+    ]
+  },
+  chaozhou: {
+    name:'潮州市',
+    desc:'府城文化底蕴最深，讲究「礼出大家」，程序感强但聘金相对克制。',
+    items:[
+      {p:'湘桥区（市区）', lo:6.8, hi:15.8, t:'重仪轨不重金额，程序一步不能少'},
+      {p:'潮安区', lo:8.8, hi:17.8, t:'村镇差异大，庵埠、彩塘等工业镇偏高'},
+      {p:'枫溪区', lo:7.8, hi:16.8, t:'陶瓷产业集中，家庭作坊多，讲人情不讲排场'},
+      {p:'饶平县', lo:6.8, hi:15.8, t:'沿海与山区差异明显，山区偏低、沿海偏高'}
+    ]
+  },
+  jieyang: {
+    name:'揭阳市',
+    desc:'整体行情在潮汕三市中偏高，普宁尤为突出，同时也是婚俗改革推进力度最大的地区。',
+    items:[
+      {p:'榕城区（市区）', lo:8.8, hi:18.8, t:'市区规范，多数家庭接受分期或共同置业'},
+      {p:'揭东区', lo:8.8, hi:18.8, t:'城乡混合，礼数完整但相对好沟通'},
+      {p:'普宁市', lo:10.8, hi:23.8, t:'民间普遍反映为潮汕行情高位，商贾风气重'},
+      {p:'揭西县', lo:8.8, hi:19.8, t:'山区县，宗族结构强，舅父话语权很大'},
+      {p:'惠来县', lo:8.8, hi:20.8, t:'沿海，礼数名目多，饼食与金饰要求较细'}
+    ]
+  }
+};
+
+const TIMELINE = [
+  {n:'01', t:'提亲 / 说亲', d:'由男方长辈或媒人上门，带<b>大桔、饼食、茶料</b>等手信（务求双数）。这一步是探口风，不谈钱，只谈「两个孩子合不合」。', tag:'忌：第一次上门就问彩礼'},
+  {n:'02', t:'合婚 / 择日', d:'交换生辰八字，请先生择吉日。潮汕极重日子，<b>迎亲、安床、上头</b>各有独立吉时，通常一次择定全部流程。', tag:'提前 3–6 个月启动'},
+  {n:'03', t:'送聘（过大礼）', d:'男方送聘金、三金或五金、饼食糖方、五牲、烟酒至女方家。女方<b>收一部分、退一部分</b>，即为「回盘」的第一次体现。', tag:'金额务必用吉利数字'},
+  {n:'04', t:'回盘 / 送嫁妆', d:'女方回赠部分聘金、男方衣物、鞋袜、莲蕉花、草头香等，并在婚前置办嫁妆（家电、车、金饰、现金）。<b>潮汕嫁妆往往很厚。</b>', tag:'这是全篇最容易被外省误读的一步'},
+  {n:'05', t:'安床 / 上头', d:'婚前择吉时安放新床，由「好命人」（儿女双全的长辈）主持；婚前夜新人各自在家「上头」，梳头念吉祥语。', tag:'记得给主持人红包'},
+  {n:'06', t:'迎亲', d:'凌晨或清早出发，<b>开门利是、舅仔钱、拦门考问</b>一层层过。新娘由兄长或舅父牵出门，跨火盆、过米筛。', tag:'红包备足小额现金，别只带手机'},
+  {n:'07', t:'拜公祖 / 敬茶', d:'到男方家先拜祖先、再向公婆敬茶改口，收<b>改口费</b>。潮汕祠堂与祖先观念极重，这一步的态度全家人都在看。', tag:'态度恭敬比话术管用'},
+  {n:'08', t:'食桌（婚宴）', d:'潮汕婚宴档次高、桌数多，海鲜卤水为主。<b>母舅坐大位</b>，舅父未到不得开席——这是硬规矩。', tag:'务必确认舅父席位与到场时间'},
+  {n:'09', t:'三朝回门', d:'婚后第三日（或择日）携礼回娘家，岳家设宴。<b>回门礼不可省</b>，标志着两段家庭关系正式建立。', tag:'此后年节礼数才算真正开始'}
+];
+
+const HONGBAO = [
+  ['开门利是','给拦门的女方亲友、伴娘团','几百 – 数千'],
+  ['舅仔钱','给新娘的弟弟／兄长，牵出门的谢礼','数千 – 上万'],
+  ['安床红包','给主持安床的「好命人」','数百 – 上千'],
+  ['上头红包','给梳头长辈','数百'],
+  ['改口费','双方父母给新人（互给）','数千 – 上万'],
+  ['洗屎尿钱','谢女方父母养育之恩，含在聘礼内','数千 – 上万'],
+  ['媒人钱','谢媒人，成婚当日或次日付','数千'],
+  ['担盘 / 扛嫁妆','给搬运嫁妆的亲属邻里','数百 / 人'],
+  ['司机与婚车','婚车司机、摄像团队红包','数百 / 人']
+];
+
+const STAGES = [
+  {
+    n:'第一阶段', t:'破冰 · 从「食」切入', sub:'0 – 1 个月',
+    icon:'🍲',
+    color:'from-[#A62B2B] to-[#7A1C1C]',
+    points:[
+      ['用吃开启话题，而不是情话','潮汕人对食物的热情远超对甜言蜜语的兴趣。问她「哪家牛肉火锅的吊龙最好」，比问「在干嘛」有效十倍。'],
+      ['主动做攻略、订位、排队','潮汕热门店排队一小时是常态。愿意提前去拿号的人，会被直接归类为「靠谱」。'],
+      ['展示你会吃','知道部位（吊龙、匙柄、三花趾、五花趾）、知道涮几秒、知道沙茶和普宁豆酱的区别，这是硬通货。'],
+      ['不要一上来就谈地域','"你们潮汕是不是……" 这类开场会立刻触发防御。先当她是个具体的人。']
+    ]
+  },
+  {
+    n:'第二阶段', t:'升温 · 进入她的生活半径', sub:'1 – 4 个月',
+    icon:'🍵',
+    color:'from-[#8E5B1F] to-[#6B4315]',
+    points:[
+      ['争取一次「食茶」邀请','被带去家里或店铺喝茶，意味着你已经进入她的社交圈层。这是关键节点。'],
+      ['记住她家的节庆节奏','春节、元宵、清明、端午、中元、中秋、冬至、年例——潮汕过节密度全国罕见。在她家忙碌时问一句「需要帮忙吗」，杀伤力极强。'],
+      ['送手信而不是奢侈品','老字号饼食、腐乳饼、绿豆饼、单丛茶。给「她家里人」带手信，比给她本人买包有效得多。'],
+      ['稳定 &gt; 惊喜','潮汕家庭观偏保守务实。准时、说到做到、有稳定职业规划，这些「 boring 」的品质才是加分项。']
+    ]
+  },
+  {
+    n:'第三阶段', t:'见家长 · 真正的考试', sub:'4 – 12 个月',
+    icon:'🏠',
+    color:'from-[#1F5C4A] to-[#134033]',
+    points:[
+      ['搞清楚家里谁说话算数','潮汕家庭常是「母亲主内政 + 父亲点头」，而<b>舅父在婚事上拥有极高话语权</b>。搞错决策人，努力全白费。'],
+      ['手信要双数、要有本地品牌','烟酒茶饼搭配，数量成双。别送太洋气的东西，长辈更认老字号与实用性。'],
+      ['准备被问三个问题','① 哪里人、家里做什么；② 工作在哪个城市、稳不稳定；③ 打算在哪定居。第三个问题<b>没有「以后再说」这个答案</b>。'],
+      ['主动承担，但别抢戏','饭后帮忙收桌、给长辈添茶，这些细节被看在眼里。同时不要喧宾夺主、不要高谈阔论。']
+    ]
+  },
+  {
+    n:'第四阶段', t:'谈婚论嫁 · 把钱谈成礼数', sub:'12 个月 +',
+    icon:'🧧',
+    color:'from-[#7A1C1C] to-[#4A1010]',
+    points:[
+      ['绝不亲自砍价','聘金通过<b>媒人或双方长辈</b>沟通。本人下场谈钱，在潮汕语境里等于羞辱对方家庭。'],
+      ['先表态「按礼数来」','这句话在潮汕语境中代表你懂规矩、愿意承担，通常换来对方家长的体面让步。'],
+      ['主动提房与未来安排','比起彩礼数额，对方家庭更怕女儿没有着落。<b>给出清晰的定居与置业计划，是最强的议价筹码。</b>'],
+      ['尊重所有「麻烦」的流程','择日、安床、拜祖、母舅坐大位…… 你觉得繁琐的每一步，都是她家在亲戚面前的脸面。别嫌，别简化。']
+    ]
+  }
+];
+
+const DO_LIST = [
+  '提前问清家庭结构与称呼，进门先叫人',
+  '穿得干净保守，别太潮、别露logo',
+  '带双数手信，最好是可以分给邻居的饼食',
+  '长辈敬茶双手接、起身、说谢谢',
+  '饭后主动收碗、帮忙添茶倒水',
+  '被问收入时诚实说区间，别夸大',
+  '表态愿意在潮汕或广深定居，给出理由',
+  '临走时向每位长辈单独道别'
+];
+
+const DONT_LIST = [
+  '第一次见面就提彩礼、房本加名',
+  '拿「重男轻女」「潮汕大男人」当聊天话题',
+  '说你们这边规矩真多 / 太麻烦了',
+  '在她父母面前喝酒失态或劝长辈喝酒',
+  '炫富、吹嘘人脉、贬低自己的老家',
+  '当着长辈面过度亲密或使唤她做事',
+  '承诺做不到的事（买房、彩礼、城市）',
+  '只送她本人礼物，完全忽略她家人'
+];
+
+const PHRASES = [
+  ['食未', 'ziah bhuê', '吃了吗', '潮汕最日常的招呼语，相当于「你好」。见面说一句「食未」，瞬间从外人变熟人。'],
+  ['雅', 'ngia', '漂亮、好看', '夸人专用。夸她「今日雅绝」比「你真美」更地道，杀伤力极强。'],
+  ['食茶', 'ziah dê', '喝茶', '潮汕社交的核心动词。被说「来食茶」，等于被邀请进入私人关系圈。'],
+  ['胶己人', 'ga gī nang', '自己人', '潮汕认同感的关键词。当她家人开始说你「胶己人」，就成了。'],
+  ['有影', 'ǔ iánn', '真的吗 / 是真的', '表示惊讶或确认。听长辈讲古时适时来一句，显得你在认真听。'],
+  ['无变', 'bho bian', '没办法', '带点无奈的感叹。日常高频，用对了很生活化。'],
+  ['拍拼', 'pah biann', '努力拼搏', '潮汕精神的核心词。用来夸她或她家人「真拍拼」，非常受用。'],
+  ['浪险', 'lāng hiám', '厉害、牛', '最强褒义词之一。她做成了什么事，来一句「浪险！」比「好棒」地道百倍。'],
+  ['猛猛', 'mén mén', '快点、赶紧', '「猛猛来」= 快来。生活气息浓厚的高频副词。'],
+  ['好食', 'hoh ziah', '好吃', '吃到对味的东西一定要大声说。潮汕人对食物的评价极其认真。'],
+  ['莫', 'moh', '不要、别', '「莫客气」= 别客气。学会这一个字，日常对话顺很多。'],
+  ['多谢', 'do siā', '谢谢', '对长辈和服务人员常说，潮汕人非常看重是否「有家教」。']
+];
+
+const FOODS = [
+  ['🥩','潮汕牛肉火锅','第一次约会的安全牌','现宰黄牛、分部位涮、沙茶酱。主动报出「吊龙、匙柄、五花趾」，并帮她把控涮的秒数——这是教科书级加分项。'],
+  ['🍚','砂锅粥','深夜场 / 关系升温','虾蟹粥、膏蟹粥现点现煲，等半小时的过程正好聊天。适合第二三次约会，节奏慢、氛围松。'],
+  ['🦢','卤水鹅','见长辈手信或家宴','卤鹅肝、鹅掌、鹅头是硬通货。提一只老字号卤鹅上门，长辈好感度直接拉满。'],
+  ['🦪','蚝烙','街边小店的烟火气','外脆内嫩蘸鱼露。愿意陪她钻巷子排队吃蚝烙，比去高级餐厅更加分。'],
+  ['🍜','肠粉 / 粿条汤','早餐局，关系的进阶','能约到早餐，说明关系已经不一般。潮汕肠粉与广式完全不同，料足酱浓。'],
+  ['🍢','夜糜 · 打冷','深夜第二场','鱼饭、冻红蟹、卤味、杂咸配白粥。潮汕夜生活的灵魂，也是最能聊真心话的场景。'],
+  ['🍮','豆花 / 鸭母捻','甜品收尾','逛老城时的甜品站。便宜、地道、有童年记忆点，容易触发她讲家里的故事。'],
+  ['🍊','甘草水果','边走边吃的散步局','水果拌甘草汁酸咸甜，潮汕独有。适合逛街时随手买一份，自然不刻意。'],
+  ['🫖','工夫茶','关系质变的场景','三杯小盏、凤凰单丛。被邀请喝工夫茶，说明你已经被纳入她的日常圈层。']
+];
+
+const TEA_RULES = [
+  ['三杯成「品」','无论几人，标准三杯摆成品字。取杯时拿离自己最近的那杯，别挑。'],
+  ['先长后幼','第一巡先敬长辈与客人，主人最后喝。抢先喝会被视为没家教。'],
+  ['叩指谢茶','对方给你倒茶，食指中指轻叩桌面两下致谢。这个动作一定要会。'],
+  ['不喝要说明','喝不下就把杯留在原位或轻推回去，别一口不动也一言不发。']
+];
+
+const TRAPS = [
+  ['她说「随便」，其实有明确偏好','潮汕女生普遍不愿显得难搞。"随便吃啥"通常是客气。','直接给两个具体选项：「牛肉火锅还是砂锅粥？」把开放题变选择题。'],
+  ['节日密度远超你的想象','除传统大节，还有各村各姓的「年例」「营老爷」，时间不固定。','年初就把她家的重要日子记进日历，主动问「今年年例是几时」。'],
+  ['地域讨论是雷区','"潮汕重男轻女""潮汕男的不做家务"——这些话她自己可以说，你不能说。','只描述具体的人，不做群体判断。遇到长辈说类似观点时，笑着听，不辩论。'],
+  ['家庭意见权重很高','很多决定不是她一个人做的，包括要不要继续交往。','从一开始就经营她家人对你的印象，而不是最后才临时抱佛脚。'],
+  ['定居问题是必答题','"以后再说""看机会"基本等同于减分答案。','提前想清楚并给出可执行方案：城市、时间线、双方父母的安排。'],
+  ['彩礼是面子，不是价格','当众砍价、要求"明码标价"，会被视为不尊重整个家族。','把话交给长辈和媒人，自己只表达态度：按礼数办，一定办好。']
+];
+
+/* ═══════════════ RENDER: 行情 ═══════════════ */
+const MAX_SCALE = 25;
+function renderRegion(key){
+  const r = REGIONS[key];
+  document.getElementById('regionName').textContent = r.name;
+  document.getElementById('regionDesc').textContent = r.desc;
+  const box = document.getElementById('regionBars');
+  box.innerHTML = r.items.map(it=>{
+    const hiPct = (it.hi/MAX_SCALE*100).toFixed(1);
+    return `
+    <div>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <span class="font-serif font-bold text-[15px] text-ink">${it.p}</span>
+        <span class="text-[13px] font-semibold text-zhu num">${it.lo.toFixed(1)} – ${it.hi.toFixed(1)} 万</span>
+      </div>
+      <div class="relative h-2.5 rounded-full bg-zhu/8 overflow-hidden">
+        <div class="bar-fill absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-zhu/60 via-zhu to-gold" style="width:0" data-w="${hiPct}"></div>
+      </div>
+      <p class="mt-1.5 text-[12px] text-ink2">${it.t}</p>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(()=>{
+    box.querySelectorAll('.bar-fill').forEach(b=> b.style.width = b.dataset.w + '%');
+  });
+  document.querySelectorAll('#regionTabs .tab').forEach(b=>{
+    b.classList.toggle('tab-active', b.dataset.r===key);
+  });
+}
+document.querySelectorAll('#regionTabs .tab').forEach(b=>{
+  b.addEventListener('click',()=>renderRegion(b.dataset.r));
+});
+renderRegion('shantou');
+
+/* ═══════════════ RENDER: 计算器 ═══════════════ */
+let huipanRate = 0.6;
+function fmt(n){ return n.toLocaleString('zh-CN',{minimumFractionDigits:1,maximumFractionDigits:1}); }
+
+function calc(){
+  const pin    = +document.getElementById('pin').value;
+  const gram   = +document.getElementById('gram').value;
+  const gp     = +document.getElementById('goldPrice').value || 0;
+  const tables = +document.getElementById('tables').value || 0;
+  const tp     = +document.getElementById('tablePrice').value || 0;
+  const misc   = +document.getElementById('misc').value;
+  const house  = document.getElementById('needHouse').checked
+    ? (+document.getElementById('area').value||0) * (+document.getElementById('housePrice').value||0) * (+document.getElementById('down').value) / 10000
+    : 0;
+
+  document.getElementById('vPin').textContent  = pin.toFixed(1);
+  document.getElementById('vGram').textContent = gram;
+  document.getElementById('vMisc').textContent = misc.toFixed(1);
+
+  const goldW   = gram * gp / 10000;
+  const banquet = tables * tp / 10000;
+  const recover = banquet * 0.65;               // 人情回收，仅用于说明
+  const gross   = pin + goldW + banquet + misc + house;
+  const back    = pin * huipanRate;
+  const net     = gross - back - recover;
+
+  document.getElementById('outGross').textContent = fmt(gross);
+  document.getElementById('outBack').textContent  = fmt(back + recover);
+  document.getElementById('outNet').textContent   = fmt(Math.max(net,0));
+
+  const items = [
+    ['聘金', pin, '#A62B2B'],
+    ['三金 / 五金', goldW, '#C9A227'],
+    ['婚宴酒席', banquet, '#8E5B1F'],
+    ['其他礼数杂项', misc, '#1F5C4A'],
+    ['婚房首付', house, '#4A5568']
+  ].filter(x=>x[1]>0);
+  const max = Math.max(...items.map(x=>x[1]), 1);
+
+  document.getElementById('breakdown').innerHTML = items.map(([label,val,color])=>`
+    <div>
+      <div class="flex justify-between text-[12.5px] mb-1.5">
+        <span class="text-ink2">${label}</span>
+        <span class="font-semibold text-ink num">${fmt(val)} 万</span>
+      </div>
+      <div class="h-2 rounded-full bg-ink/6 overflow-hidden">
+        <div class="bar-fill h-full rounded-full" style="width:${(val/max*100).toFixed(1)}%;background:${color}"></div>
+      </div>
+    </div>`).join('') + `
+    <div class="mt-4 pt-4 border-t border-dashed border-zhu/20 space-y-2 text-[12.5px]">
+      <div class="flex justify-between"><span class="text-ink2">− 女方回盘（嫁妆返还）</span><span class="num font-semibold text-emerald-700">− ${fmt(back)} 万</span></div>
+      <div class="flex justify-between"><span class="text-ink2">− 婚宴人情回收（按 65% 估）</span><span class="num font-semibold text-emerald-700">− ${fmt(recover)} 万</span></div>
+      <div class="flex justify-between pt-2 border-t border-zhu/15"><span class="font-bold text-ink">实际净支出</span><span class="num font-black text-zhu text-[15px]">${fmt(Math.max(net,0))} 万</span></div>
+    </div>`;
+}
+['pin','gram','goldPrice','tables','tablePrice','misc','area','housePrice','down'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('input', calc);
+  el.addEventListener('change', calc);
+});
+document.getElementById('needHouse').addEventListener('change', e=>{
+  const box = document.getElementById('houseBox');
+  box.classList.toggle('opacity-40', !e.target.checked);
+  box.classList.toggle('pointer-events-none', !e.target.checked);
+  calc();
+});
+document.querySelectorAll('#huipan .hp').forEach(b=>{
+  b.addEventListener('click',()=>{
+    huipanRate = +b.dataset.v;
+    document.querySelectorAll('#huipan .hp').forEach(x=>x.classList.remove('tab-active'));
+    b.classList.add('tab-active');
+    calc();
+  });
+});
+document.querySelector('#huipan .hp[data-v="0.6"]').classList.add('tab-active');
+calc();
+
+/* ═══════════════ RENDER: 流程 ═══════════════ */
+document.getElementById('timeline').innerHTML = TIMELINE.map((s,i)=>`
+  <div class="relative md:grid md:grid-cols-2 md:gap-10 items-start">
+    <div class="${i%2 ? 'md:col-start-2' : 'md:col-start-1 md:text-right'}">
+      <div class="card rounded-xl p-5">
+        <div class="flex items-center gap-2.5 ${i%2 ? '' : 'md:flex-row-reverse'}">
+          <span class="font-serif text-[11px] font-bold text-gold border border-gold/40 rounded px-2 py-0.5 num">STEP ${s.n}</span>
+          <h3 class="font-serif text-lg font-bold text-zhudk">${s.t}</h3>
+        </div>
+        <p class="mt-2.5 text-[13px] leading-7 text-ink2">${s.d}</p>
+        <div class="mt-3 inline-block text-[11.5px] px-2.5 py-1 rounded bg-zhu/8 text-zhu border border-zhu/15">${s.tag}</div>
+      </div>
+    </div>
+    <div class="absolute -left-[1px] md:left-1/2 md:-translate-x-1/2 top-6 w-4 h-4 rounded-full bg-paper border-[3px] border-zhu"></div>
+  </div>`).join('');
+
+document.getElementById('hongbao').innerHTML = HONGBAO.map(([a,b,c])=>`
+  <div class="flex gap-3">
+    <div class="w-1 rounded-full bg-gradient-to-b from-gold to-zhu/40 shrink-0"></div>
+    <div>
+      <div class="flex flex-wrap items-baseline gap-2">
+        <span class="font-serif font-bold text-[14px] text-ink">${a}</span>
+        <span class="text-[11px] px-1.5 py-0.5 rounded bg-gold/15 text-[#8E5B1F] num">${c}</span>
+      </div>
+      <p class="text-[12px] text-ink2 mt-0.5">${b}</p>
+    </div>
+  </div>`).join('');
+
+/* ═══════════════ RENDER: 攻略 ═══════════════ */
+document.getElementById('stages').innerHTML = STAGES.map((s,i)=>`
+  <details class="card rounded-xl overflow-hidden group" ${i===0?'open':''}>
+    <summary class="flex items-center gap-4 p-5 md:p-6 hover:bg-white/50 transition">
+      <div class="w-12 h-12 rounded-lg bg-gradient-to-br ${s.color} text-[#FFF6E4] grid place-items-center text-xl shrink-0 shadow-md">${s.icon}</div>
+      <div class="min-w-0 flex-1">
+        <div class="text-[11px] tracking-[.2em] text-gold font-bold">${s.n} · ${s.sub}</div>
+        <h3 class="font-serif text-lg md:text-xl font-bold text-zhudk mt-0.5">${s.t}</h3>
+      </div>
+      <svg class="chev w-5 h-5 text-ink2 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </summary>
+    <div class="px-5 md:px-6 pb-6 pt-1 grid md:grid-cols-2 gap-x-7 gap-y-5 border-t border-zhu/12">
+      ${s.points.map(([h,d])=>`
+        <div class="pt-4">
+          <div class="flex items-start gap-2">
+            <span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-zhu shrink-0"></span>
+            <h4 class="font-serif font-bold text-[14.5px] text-ink leading-6">${h}</h4>
+          </div>
+          <p class="mt-1.5 pl-[14px] text-[13px] leading-7 text-ink2">${d}</p>
+        </div>`).join('')}
+    </div>
+  </details>`).join('');
+
+document.getElementById('doList').innerHTML = DO_LIST.map(x=>`
+  <li class="flex gap-2.5"><span class="text-emerald-700 font-bold shrink-0">✓</span><span>${x}</span></li>`).join('');
+document.getElementById('dontList').innerHTML = DONT_LIST.map(x=>`
+  <li class="flex gap-2.5"><span class="text-zhu font-bold shrink-0">✕</span><span>${x}</span></li>`).join('');
+
+/* ═══════════════ RENDER: 潮语 ═══════════════ */
+document.getElementById('phrases').innerHTML = PHRASES.map(([w,py,m,u])=>`
+  <div class="flip h-40 cursor-pointer" tabindex="0" role="button" aria-label="翻转卡片：${w}">
+    <div class="flip-in h-full">
+      <div class="flip-f card rounded-xl h-full flex flex-col items-center justify-center text-center p-4">
+        <div class="font-serif text-[26px] font-black text-zhudk leading-tight">${w}</div>
+        <div class="mt-1.5 text-[11px] tracking-[.14em] text-gold font-semibold">${py}</div>
+        <div class="mt-3 text-[11px] text-ink2">点击看释义</div>
+      </div>
+      <div class="flip-b rounded-xl h-full flex flex-col items-center justify-center text-center p-4 hero-bg text-[#FFF6E4] relative overflow-hidden">
+        <div class="relative z-10">
+          <div class="font-serif text-[15px] font-bold text-goldlt">${m}</div>
+          <p class="mt-2 text-[11.5px] leading-[1.7] text-[#FFF6E4]/85">${u}</p>
+        </div>
+      </div>
+    </div>
+  </div>`).join('');
+
+document.querySelectorAll('.flip').forEach(f=>{
+  const toggle = ()=> f.classList.toggle('on');
+  f.addEventListener('click', toggle);
+  f.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }});
+});
+
+/* ═══════════════ RENDER: 美食 ═══════════════ */
+document.getElementById('foods').innerHTML = FOODS.map(([e,t,sub,d])=>`
+  <div class="card rounded-xl p-5 hover:-translate-y-0.5 transition duration-200">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">${e}</span>
+      <div>
+        <h3 class="font-serif font-bold text-[15.5px] text-zhudk">${t}</h3>
+        <div class="text-[11px] text-gold font-semibold tracking-wide">${sub}</div>
+      </div>
+    </div>
+    <p class="mt-3 text-[12.5px] leading-[1.85] text-ink2">${d}</p>
+  </div>`).join('');
+
+document.getElementById('teaRules').innerHTML = TEA_RULES.map(([h,d])=>`
+  <div class="rounded-lg bg-white/70 border border-zhu/15 p-4">
+    <div class="font-serif font-bold text-[13.5px] text-zhudk">${h}</div>
+    <p class="mt-1 text-[12px] leading-6 text-ink2">${d}</p>
+  </div>`).join('');
+
+/* ═══════════════ RENDER: 避坑 ═══════════════ */
+document.getElementById('traps').innerHTML = TRAPS.map(([t,d,s])=>`
+  <div class="card rounded-xl p-6">
+    <div class="flex items-center gap-2">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A62B2B" stroke-width="2.2" stroke-linecap="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <h3 class="font-serif font-bold text-[15.5px] text-zhudk">${t}</h3>
+    </div>
+    <p class="mt-2.5 text-[13px] leading-7 text-ink2"><span class="text-zhu font-semibold">坑：</span>${d}</p>
+    <div class="mt-3 rounded-lg bg-emerald-700/8 border border-emerald-700/20 p-3">
+      <p class="text-[12.5px] leading-6 text-emerald-900"><span class="font-bold">化解：</span>${s}</p>
+    </div>
+  </div>`).join('');
+
+/* ═══════════════ NAV 高亮 ═══════════════ */
+const links = [...document.querySelectorAll('.nav-link')];
+const secs  = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('act', l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
